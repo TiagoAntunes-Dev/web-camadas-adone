@@ -8,7 +8,8 @@
 ## 1. O meu banco de dados local
 Durante grande parte do desenvolvimento da API do projeto Suki Doces, o meu banco de dados MySQL estava rodando exclusivamente na minha máquina. A configuração original no meu arquivo `.env` apontava diretamente para a porta local, como pode ser visto abaixo:
 
-> [COLE AQUI A FOTO 1: O print do seu arquivo .env mostrando o localhost:3306]
+<img width="1906" height="785" alt="Configuração Local" src="https://github.com/user-attachments/assets/93c9ca12-0e66-4ddb-8b9f-8e14ec2da74d" />
+
 
 Abaixo está a estrutura principal do meu banco de dados através do arquivo `schema.prisma`, que contém a modelagem de tabelas vitais para o e-commerce, como `produtos`, `pedidos`, `usuario`, `carrinho_itens` e `categorias`:
 
