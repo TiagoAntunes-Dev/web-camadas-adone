@@ -18,7 +18,8 @@ Abaixo está a estrutura principal do meu banco de dados através do arquivo `sc
 
 E aqui está a comprovação do banco de dados populado e rodando ativamente no meu ambiente local através da interface do banco:
 
-> [COLE AQUI A FOTO 3: O print do seu MySQL Workbench rodando localmente]
+> <img width="1914" height="940" alt="Localhost" src="https://github.com/user-attachments/assets/1570fe25-968f-46fc-83a8-1d9cefd453b8" />
+
 
 ---
 
