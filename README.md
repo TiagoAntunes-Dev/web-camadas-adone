@@ -13,7 +13,8 @@ Durante grande parte do desenvolvimento da API do projeto Suki Doces, o meu banc
 
 Abaixo está a estrutura principal do meu banco de dados através do arquivo `schema.prisma`, que contém a modelagem de tabelas vitais para o e-commerce, como `produtos`, `pedidos`, `usuario`, `carrinho_itens` e `categorias`:
 
-> [COLE AQUI A FOTO 2: O print do seu código schema.prisma]
+> <img width="1920" height="826" alt="Schema Prisma" src="https://github.com/user-attachments/assets/b4c99cea-ab51-44d6-8b2c-5bc4ae6920a5" />
+
 
 E aqui está a comprovação do banco de dados populado e rodando ativamente no meu ambiente local através da interface do banco:
 
