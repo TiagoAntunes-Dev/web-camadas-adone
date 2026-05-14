@@ -1,1 +1,1 @@
-# Hospedagem de Banco de Dados: Documentação do processo de migração
+# Hospedagem de Banco de Dados: Documentação da migração
