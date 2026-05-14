@@ -41,7 +41,8 @@ A plataforma escolhida foi o **Aiven**. Abaixo detalho o processo real de como m
 
 Abaixo, a captura de tela que comprova as tabelas do meu projeto devidamente criadas no servidor da nuvem:
 
-> [COLE AQUI A FOTO 4: O print das tabelas rodando no Aiven ou no Workbench conectado ao Aiven]
+> <img width="1919" height="1030" alt="Query-Statitics" src="https://github.com/user-attachments/assets/ddcda055-9af1-4b07-8381-8c83c035912c" />
+
 
 Abaixo está o teste de integração: uma requisição via Thunder Client batendo na minha API e salvando/buscando os dados com sucesso diretamente no banco remoto!
 
