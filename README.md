@@ -11,7 +11,7 @@
 Antes de realizar a migração definitiva para esta atividade, a configuração do meu arquivo .env apontava para uma instância de banco de dados MySQL hospedada na AWS (Amazon RDS), utilizando a porta padrão 3306, conforme a estrutura abaixo:
 
 <div align="center">
-  <img width="800" alt="Configuração Local" src="https://github.com/user-attachments/assets/93c9ca12-0e66-4ddb-8b9f-8e14ec2da74d" />
+  <img width="715" height="52" alt="image" src="https://github.com/user-attachments/assets/87ae35f5-9930-4e72-990c-6f284a38b2d5" />
 </div>
 
 <br>
