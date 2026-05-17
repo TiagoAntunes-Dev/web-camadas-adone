@@ -8,7 +8,7 @@
 
 ## 1. O meu banco de dados local
 
-Durante grande parte do desenvolvimento da API do projeto Suki Doces, o meu banco de dados MySQL estava rodando exclusivamente na minha máquina. A configuração original no meu arquivo `.env` apontava diretamente para a porta local, como pode ser visto abaixo:
+Antes de realizar a migração definitiva para esta atividade, a configuração do meu arquivo .env apontava para uma instância de banco de dados MySQL hospedada na AWS (Amazon RDS), utilizando a porta padrão 3306, conforme a estrutura abaixo:
 
 <div align="center">
   <img width="800" alt="Configuração Local" src="https://github.com/user-attachments/assets/93c9ca12-0e66-4ddb-8b9f-8e14ec2da74d" />
