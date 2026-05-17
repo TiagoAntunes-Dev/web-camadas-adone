@@ -19,7 +19,8 @@ Antes de realizar a migração definitiva para esta atividade, a configuração 
 Abaixo está a estrutura principal do meu banco de dados através do arquivo `schema.prisma`, que contém a modelagem de tabelas vitais para o e-commerce, como `produtos`, `pedidos`, `usuario`, `carrinho_itens` e `categorias`:
 
 <div align="center">
-  <img width="800" alt="Schema Prisma" src="https://github.com/user-attachments/assets/b4c99cea-ab51-44d6-8b2c-5bc4ae6920a5" />
+  <img width="725" height="313" alt="image" src="https://github.com/user-attachments/assets/5ee327cd-bd15-437c-b545-475d985c7938" />
+  <img width="722" height="442" alt="image" src="https://github.com/user-attachments/assets/069a0c33-518b-40c2-9743-a122c36d962e" />
 </div>
 
 <br>
