@@ -55,7 +55,7 @@ A plataforma escolhida foi o **Aiven**. Abaixo detalho o processo real de como m
 Abaixo, a captura de tela que comprova as tabelas do meu projeto devidamente criadas no servidor da nuvem:
 
 <div align="center">
-  <img width="800" alt="Query-Statitics" src="https://github.com/user-attachments/assets/ddcda055-9af1-4b07-8381-8c83c035912c" />
+  <img width="1911" height="847" alt="image" src="https://github.com/user-attachments/assets/e5a9a5b9-3dc1-4aba-a1ac-c536a6995248" />
 </div>
 
 <br>
