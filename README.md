@@ -63,7 +63,7 @@ Abaixo, a captura de tela que comprova as tabelas do meu projeto devidamente cri
 Abaixo está o teste de integração: uma requisição via Thunder Client batendo na minha API e salvando/buscando os dados com sucesso diretamente no banco remoto!
 
 <div align="center">
-  <img width="800" alt="Teste Thunder Client" src="COLE_O_LINK_DA_FOTO_AQUI" />
+  <img width="785" height="442" alt="image" src="https://github.com/user-attachments/assets/a8f892f9-7b30-4747-8831-8f5466e8d49d" />
 </div>
 
 ---
