@@ -28,7 +28,7 @@ Abaixo está a estrutura principal do meu banco de dados através do arquivo `sc
 E aqui está a comprovação do banco de dados populado e rodando ativamente no meu ambiente local através da interface do banco:
 
 <div align="center">
-  <img width="800" alt="LOGS" src="https://github.com/user-attachments/assets/1131f931-313b-4001-a644-cd84a65d0ec2" />
+  <img width="1920" height="826" alt="image" src="https://github.com/user-attachments/assets/0a4612af-f25e-44b4-91cf-6ee796358b55" />
 </div>
 
 ---
