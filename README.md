@@ -115,3 +115,14 @@ Escolhi o MongoDB Atlas porque ele é o serviço oficial do próprio MongoDB. A 
 <img width="521" height="232" alt="image" src="https://github.com/user-attachments/assets/28d53861-74ac-4367-bbce-ee3317e051b7"/>
 </p>
 
+
+```
+```
+### 3.2 Configuração de acesso
+
+Após criar o cluster, configurei dois pontos obrigatórios para conseguir conectar:
+
+- **Database User:** Criei um usuário com nome e senha específicos para a aplicação (não usei minha conta pessoal do Atlas).
+- **Network Access (IP Whitelist):** Adicionei `0.0.0.0/0` para permitir conexão de qualquer IP durante o desenvolvimento. Em produção isso deveria ser restrito.
+
+> 📸 **[INSIRA AQUI: print da tela de Network Access mostrando o IP liberado]**
