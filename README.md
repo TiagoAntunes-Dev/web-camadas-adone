@@ -15,11 +15,10 @@
 
 ## Índice
 1. [Configuração Local do Banco de Dados](#1-configuração-local-do-banco-de-dados)
-2. [Opções de Hospedagem Gratuita Pesquisadas](#2-opções-de-hospedagem-gratuita-pesquisadas)
-3. [A Hospedagem Escolhida: MongoDB Atlas](#3-a-hospedagem-escolhida-mongodb-atlas--passo-a-passo)
+2. [Entendo por que usar o MongoDB para Hospedagem](#2-entendo-por-que-usar-o-mongodb-para-hospedagem)
+3. [MongoDB Atlas — Passo a Passo para criar minha conta](#3-mongodb-atlas--passo-a-passo-para-criar-minha-conta)
 4. [O que Muda do Local para o Remoto](#4-o-que-muda-do-local-para-o-remoto)
-5. [Estrutura do Projeto](#5-estrutura-do-projeto)
-6. [Tecnologias Utilizadas](#6-tecnologias-utilizadas)
+5. [Estrutura do Projeto](#estrutura-do-projeto)
 
 ---
 
@@ -31,6 +30,7 @@ Durante o desenvolvimento, o banco de dados era acessado localmente. A variável
 ```env
 # Versão local (Localhost rodando na própria máquina)
 PORT = 4000
+MONGO_URI=mongodb://localhost:27017/crud_db
 
 ```
 
