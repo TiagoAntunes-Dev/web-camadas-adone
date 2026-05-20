@@ -35,3 +35,7 @@ MONGO_URI=mongodb://localhost:27017/crud_db
 ```
 
 O arquivo `.env` **nunca é enviado ao GitHub**, porque ele contém credenciais sensíveis — como usuário, senha e o endereço do banco. Por isso ele está listado no `.gitignore`.
+
+---
+
+### Schema / Model do projeto
