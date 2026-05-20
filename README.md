@@ -40,3 +40,37 @@ O arquivo `.env` **nunca é enviado ao GitHub**, porque ele contém credenciais 
 
 ### Schema / Model do projeto
 Meu projeto não usa Prisma — ele usa **Mongoose**, que é a biblioteca de modelagem de objetos (ODM) para MongoDB. O equivalente ao `schema.prisma` no meu projeto é o arquivo `product.model.js`:
+
+```javascript
+const mongoose = require('mongoose');
+
+const ProductSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, 'O nome do produto é obrigatório.'],
+        trim: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: [0, 'A quantidade em stock não pode ser negativa.']
+    },
+    price: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: [0, 'O preço do produto não pode ser negativo.']
+    },
+    image: {
+        type: String,
+        required: false,
+        trim: true
+    }
+},
+{
+    timestamps: true
+});
+
+module.exports = mongoose.model('Product', ProductSchema);
+```
