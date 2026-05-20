@@ -137,3 +137,14 @@ Após criar o cluster, configurei dois pontos obrigatórios para conseguir conec
 <p></p>
 <p></p>
 
+### 3.3 Onde encontrar a connection string
+
+Dentro do painel do Atlas:
+1. Cliquei em **"Connect"** no cluster.
+2. Selecionei **"Drivers"** e escolhi Node.js.
+3. O Atlas gerou a connection string no formato:
+
+```
+mongodb+srv://<usuario>:<senha>@cluster0.xxxxxxx.mongodb.net/<banco>
+```
+
