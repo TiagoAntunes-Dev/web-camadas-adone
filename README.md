@@ -36,6 +36,8 @@ MONGO_URI=mongodb://localhost:27017/crud_db
 
 O arquivo `.env` **nunca é enviado ao GitHub**, porque ele contém credenciais sensíveis — como usuário, senha e o endereço do banco. Por isso ele está listado no `.gitignore`.
 
+### Banco rodando localmente
+
 ---
 
 ### Schema / Model do projeto
@@ -75,4 +77,6 @@ const ProductSchema = new mongoose.Schema({
 module.exports = mongoose.model('Product', ProductSchema);
 ```
 
-### Banco rodando localmente
+---
+
+
