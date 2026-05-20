@@ -37,7 +37,8 @@ MONGO_URI=mongodb://localhost:27017/crud_db
 O arquivo `.env` **nunca é enviado ao GitHub**, porque ele contém credenciais sensíveis — como usuário, senha e o endereço do banco. Por isso ele está listado no `.gitignore`.
 
 ### Banco rodando localmente
-
+✅ Connected to Database!
+ Server is running on port mongodb://localhost:27017/crud_db
 ---
 
 ### Schema / Model do projeto
