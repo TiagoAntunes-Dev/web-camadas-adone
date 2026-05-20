@@ -142,7 +142,8 @@ Após criar o cluster, configurei dois pontos obrigatórios para conseguir conec
 Dentro do painel do Atlas:
 1. Cliquei em **"Connect"** no cluster.
 2. Selecionei **"Drivers"** e escolhi Node.js.
-3. O Atlas gerou a connection string no formato:
+3. O Atlas gerou a connection string no formato.
+4. Substituí a URI local pela URI do Atlas no arquivo `.env`:
 
 ```
 mongodb+srv://<usuario>:<senha>@cluster0.xxxxxxx.mongodb.net/<banco>
