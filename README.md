@@ -168,7 +168,8 @@ Para garantir que o banco remoto estava funcionando, subi o servidor e fiz uma r
 Com o servidor apontando para o Atlas, testei as rotas VSCode:
 
 <p align="center">
-<img width="392" height="209" alt="image" src="https://github.com/user-attachments/assets/d8ac66ad-7c8f-403c-8733-78add1804050" />
+<img width="960" height="484" alt="image" src="https://github.com/user-attachments/assets/5fb4c926-61d8-4c2e-b766-b172b752cd6e" />
+<br>
 <img width="922" height="445" alt="image" src="https://github.com/user-attachments/assets/7b8b5cbc-a60c-43a9-9798-ba9b90c66e9a" />
 </p>
 
