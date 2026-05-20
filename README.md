@@ -85,4 +85,16 @@ module.exports = mongoose.model('Product', ProductSchema);
 
 ---
 
+## 2. Entendo por que usar o MongoDB para Hospedagem.
+
+### MongoDB Atlas
+
+**O que oferece no plano gratuito:**  
+O MongoDB Atlas oferece um cluster gratuito chamado M0 (Shared Free Tier) com 512 MB de armazenamento, conexões compartilhadas e sem expiração — o cluster não "dorme" como em outros serviços. A limitação principal é o armazenamento e o desempenho compartilhado com outros usuários do plano gratuito.
+
+**Compatível com Mongoose (equivalente ao Prisma para MongoDB)?**  
+Sim. O Mongoose se conecta ao Atlas pela connection string padrão `mongodb+srv://`. O processo é simples: cria-se o cluster, o Atlas gera a URI de conexão, e basta colá-la no `.env`.
+
+**Por que escolhi:**  
+Escolhi o MongoDB Atlas porque ele é o serviço oficial do próprio MongoDB. A integração com Mongoose é nativa, a documentação é excelente e o cluster M0 gratuito não tem data de expiração. Além disso, o Atlas já é amplamente utilizado em tutoriais e cursos, o que facilita encontrar suporte.
 
