@@ -126,8 +126,12 @@ Após criar o cluster, configurei dois pontos obrigatórios para conseguir conec
 - **Database User:** Criei um usuário com nome e senha específicos para a aplicação (não usei minha conta pessoal do Atlas).
 - **Network Access (IP Whitelist):** Adicionei `0.0.0.0/0` para permitir conexão de qualquer IP durante o desenvolvimento. Em produção isso deveria ser restrito.
 
+<p></p>
+<p></p>
+
 <p align="center">
-<img width="768" height="312" alt="image" src="https://github.com/user-attachments/assets/ac0cf801-bc22-4b4c-929e-1bfb8984d982" />
+<img width="733" height="135" alt="image" src="https://github.com/user-attachments/assets/c1898526-ecfb-49d5-88b1-b351109686a8" />
+
 </p>
 
 <p></p>
