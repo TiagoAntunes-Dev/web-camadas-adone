@@ -109,15 +109,13 @@ Escolhi o MongoDB Atlas porque ele é o serviço oficial do próprio MongoDB. A 
 3. Escolhi criar um cluster gratuito (M0 Shared), selecionando a região **AWS / Sao Paulo (sa-east-1)** para menor latência.
 4. O Atlas criou o cluster **Cluster0** automaticamente.
 
-<p> </p>
-<p></p>
+<br>
 
 <p align="center">
 <img width="521" height="232" alt="image" src="https://github.com/user-attachments/assets/28d53861-74ac-4367-bbce-ee3317e051b7"/>
 </p>
 
-<p></p>
-<p></p>
+<br>
 
 ### 3.2 Configuração de acesso
 
@@ -126,16 +124,14 @@ Após criar o cluster, configurei dois pontos obrigatórios para conseguir conec
 - **Database User:** Criei um usuário com nome e senha específicos para a aplicação (não usei minha conta pessoal do Atlas).
 - **Network Access (IP Whitelist):** Adicionei `0.0.0.0/0` para permitir conexão de qualquer IP durante o desenvolvimento. Em produção isso deveria ser restrito.
 
-<p></p>
-<p></p>
+<br>
 
 <p align="center">
 <img width="733" height="135" alt="image" src="https://github.com/user-attachments/assets/c1898526-ecfb-49d5-88b1-b351109686a8" />
 
 </p>
 
-<p></p>
-<p></p>
+<br>
 
 ### 3.3 Onde encontrar a connection string
 
@@ -149,6 +145,6 @@ Dentro do painel do Atlas:
 mongodb+srv://<usuario>:<senha>@cluster0.xxxxxxx.mongodb.net/<banco>
 ```
 
-<p>""</p>
+
 <br>
 ### 3.5 Criação das coleções no banco remoto
