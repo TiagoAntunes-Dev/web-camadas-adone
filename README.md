@@ -149,3 +149,6 @@ Dentro do painel do Atlas:
 mongodb+srv://<usuario>:<senha>@cluster0.xxxxxxx.mongodb.net/<banco>
 ```
 
+<p>""</p>
+<br>
+### 3.5 Criação das coleções no banco remoto
