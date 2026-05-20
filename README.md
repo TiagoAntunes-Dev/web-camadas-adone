@@ -1,4 +1,4 @@
-# 📦 ADO 1 · Hospedagem de Banco de Dados
+# ADO 1 · Hospedagem de Banco de Dados
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
@@ -13,7 +13,7 @@
 
 ---
 
-## 📋 Índice
+## Índice
 1. [Configuração Local do Banco de Dados](#1-configuração-local-do-banco-de-dados)
 2. [Opções de Hospedagem Gratuita Pesquisadas](#2-opções-de-hospedagem-gratuita-pesquisadas)
 3. [A Hospedagem Escolhida: MongoDB Atlas](#3-a-hospedagem-escolhida-mongodb-atlas--passo-a-passo)
@@ -31,3 +31,7 @@ Durante o desenvolvimento, o banco de dados era acessado localmente. A variável
 ```env
 # Versão local (MongoDB rodando na própria máquina)
 MONGO_URI=mongodb://localhost:27017/crud_db
+
+```
+O arquivo `.env` **nunca é enviado ao GitHub**, porque ele contém credenciais sensíveis — como usuário, senha e o endereço do banco. Por isso ele está listado no `.gitignore`.
+---
