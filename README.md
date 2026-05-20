@@ -98,3 +98,13 @@ Sim. O Mongoose se conecta ao Atlas pela connection string padrão `mongodb+srv:
 **Por que escolhi:**  
 Escolhi o MongoDB Atlas porque ele é o serviço oficial do próprio MongoDB. A integração com Mongoose é nativa, a documentação é excelente e o cluster M0 gratuito não tem data de expiração. Além disso, o Atlas já é amplamente utilizado em tutoriais e cursos, o que facilita encontrar suporte.
 
+---
+
+## 3. MongoDB Atlas — Passo a Passo para criar minha conta
+
+### 3.1 Criação da conta e do banco
+
+1. Acessei [cloud.mongodb.com](https://cloud.mongodb.com) e criei uma conta gratuita.
+2. Criei uma organização e um projeto chamado **"Project Crud"**.
+3. Escolhi criar um cluster gratuito (M0 Shared), selecionando a região **AWS / Sao Paulo (sa-east-1)** para menor latência.
+4. O Atlas criou o cluster **Cluster0** automaticamente.
