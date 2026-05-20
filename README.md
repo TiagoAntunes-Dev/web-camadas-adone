@@ -148,8 +148,13 @@ mongodb+srv://<usuario>:<senha>@cluster0.xxxxxxx.mongodb.net/<banco>
 
 <br>
 
-### 3.4 Criação das coleções no banco remoto
+### 3.4 Criação das coleções no Banco
 
 Como meu projeto usa Mongoose (e não Prisma), não existe um comando `prisma migrate deploy`. As coleções são criadas automaticamente pelo Mongoose quando o primeiro documento é inserido — esse é o comportamento padrão do MongoDB.
 
 Para garantir que o banco remoto estava funcionando, subi o servidor e fiz uma requisição POST criando um produto. O Atlas criou automaticamente o banco `crud_db` e a coleção `products`.
+
+<p align="center">
+<img width="666" height="212" alt="image" src="https://github.com/user-attachments/assets/94826f5d-daf0-43f6-8586-b3b7ceec5764" />
+<p>
+
