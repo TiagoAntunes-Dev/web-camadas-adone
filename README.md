@@ -38,6 +38,9 @@ O arquivo `.env` **nunca é enviado ao GitHub**, porque ele contém credenciais 
 
 ### Banco rodando localmente
  ```
+  C:\Users\tiago\OneDrive\Documentos\VsCode Journey Begin's\Curso em Video\HTML\crud-api-products>npm run dev
+> crud-api-express@1.0.0 dev
+> nodemon index.js
  ✅ Connected to Database!
  Server is running on port mongodb://localhost:27017/crud_db
 ```
