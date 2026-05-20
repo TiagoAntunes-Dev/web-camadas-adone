@@ -1,85 +1,175 @@
-<div align="center">
-  <h1>ADO 1 - Hospedagem de Banco de Dados</h1>
-  <h3>Projeto E-commerce: Suki Doces</h3>
-  <p><i>Disciplina: Aplicações Web em Camadas</i></p>
-</div>
+ADO 1 · Hospedagem de Banco de Dados
 
-<br>
+Disciplina: Aplicações Web em Camadas
+Projeto: Product CRUD API — Node.js + Express + MongoDB
+Aluno: Tiago Antunes Paz de Oliveira
 
-## 1. O meu banco de dados local
 
-Antes de realizar a migração definitiva para esta atividade, a configuração do meu arquivo .env apontava para uma instância de banco de dados MySQL hospedada na AWS (Amazon RDS), utilizando a porta padrão 3306, conforme a estrutura abaixo:
+1. Configuração Local do Banco de Dados
+Como estava o .env localmente
+Durante o desenvolvimento, o banco de dados era acessado localmente através do MongoDB Atlas, mas antes disso eu testei com uma instância local do MongoDB. A variável de ambiente no arquivo .env ficava assim na fase de desenvolvimento local:
+env# Versão local (MongoDB rodando na própria máquina)
+MONGO_URI=mongodb://localhost:27017/crud_db
+O arquivo .env nunca é enviado ao GitHub, porque ele contém credenciais sensíveis — como usuário, senha e o endereço do banco. Por isso ele está listado no .gitignore.
+Schema / Model do projeto
+Meu projeto não usa Prisma — ele usa Mongoose, que é a biblioteca de modelagem de objetos (ODM) para MongoDB. O equivalente ao schema.prisma no meu projeto é o arquivo product.model.js:
+javascriptconst mongoose = require('mongoose');
 
-<div align="center">
-  <img width="715" height="52" alt="image" src="https://github.com/user-attachments/assets/87ae35f5-9930-4e72-990c-6f284a38b2d5" />
-</div>
+const ProductSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, 'O nome do produto é obrigatório.'],
+        trim: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: [0, 'A quantidade em stock não pode ser negativa.']
+    },
+    price: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: [0, 'O preço do produto não pode ser negativo.']
+    },
+    image: {
+        type: String,
+        required: false,
+        trim: true
+    }
+},
+{
+    timestamps: true
+});
 
-<br>
+module.exports = mongoose.model('Product', ProductSchema);
 
-Abaixo está a estrutura principal do meu banco de dados através do arquivo `schema.prisma`, que contém a modelagem de tabelas vitais para o e-commerce, como `produtos`, `pedidos`, `usuario`, `carrinho_itens` e `categorias`:
+📸 [INSIRA AQUI: print do seu VSCode mostrando o arquivo product.model.js aberto]
 
-<div align="center">
-  <img width="725" height="313" alt="image" src="https://github.com/user-attachments/assets/5ee327cd-bd15-437c-b545-475d985c7938" />
-  <img width="722" height="442" alt="image" src="https://github.com/user-attachments/assets/069a0c33-518b-40c2-9743-a122c36d962e" />
-</div>
+Banco rodando localmente
 
-<br>
+📸 [INSIRA AQUI: print do MongoDB Compass (ou terminal) mostrando o banco crud_db rodando localmente, com a coleção products e alguns documentos]
 
-E aqui está a comprovação do banco de dados populado e rodando ativamente no meu ambiente local através da interface do banco:
 
-<div align="center">
-  <img width="1920" height="826" alt="image" src="https://github.com/user-attachments/assets/0a4612af-f25e-44b4-91cf-6ee796358b55" />
-</div>
+2. Opções de Hospedagem Gratuita Pesquisadas
+Como meu projeto usa MongoDB (não MySQL/PostgreSQL), pesquisei opções que suportam banco NoSQL na nuvem. Apresento três serviços que avaliei:
 
----
+🔹 Opção 1: MongoDB Atlas
+O que oferece no plano gratuito:
+O MongoDB Atlas oferece um cluster gratuito chamado M0 (Shared Free Tier) com 512 MB de armazenamento, conexões compartilhadas e sem expiração — o cluster não "dorme" como em outros serviços. A limitação principal é o armazenamento e o desempenho compartilhado com outros usuários do plano gratuito.
+Compatível com Mongoose (equivalente ao Prisma para MongoDB)?
+Sim. O Mongoose se conecta ao Atlas pela connection string padrão mongodb+srv://. O processo é simples: cria-se o cluster, o Atlas gera a URI de conexão, e basta colá-la no .env.
+Por que escolhi:
+Escolhi o MongoDB Atlas porque ele é o serviço oficial do próprio MongoDB. A integração com Mongoose é nativa, a documentação é excelente e o cluster M0 gratuito não tem data de expiração. Além disso, o Atlas já é amplamente utilizado em tutoriais e cursos, o que facilita encontrar suporte.
 
-## 2. Opções de hospedagem gratuita pesquisadas
+🔹 Opção 2: Railway
+O que oferece no plano gratuito:
+O Railway oferece um plano gratuito com $5 de crédito por mês. Ele suporta vários tipos de banco, incluindo MongoDB, PostgreSQL e MySQL. O limite de crédito mensal significa que o serviço pode ser desligado quando o crédito acabar, o que pode ser um problema para projetos de longo prazo.
+Compatível com Mongoose?
+Sim. O Railway gera uma connection string que pode ser usada diretamente com Mongoose, da mesma forma que o Atlas.
+Por que descartei:
+Descartei porque o modelo de créditos mensais é imprevisível para projetos pessoais. Preferi uma opção com plano gratuito permanente e sem a preocupação de que o banco pare de funcionar no meio do mês.
 
-Para realizar a migração do banco de dados do Suki Doces para a nuvem, pesquisei e avaliei três serviços gratuitos de hospedagem:
+🔹 Opção 3: Supabase
+O que oferece no plano gratuito:
+O Supabase é focado em PostgreSQL (banco relacional), não em MongoDB. Oferece 500 MB de armazenamento, 2 projetos gratuitos e o projeto "hiberna" após 7 dias de inatividade no plano gratuito.
+Compatível com Mongoose?
+Não é compatível com Mongoose diretamente, pois o Supabase usa PostgreSQL. Para usá-lo eu teria que migrar toda a estrutura do projeto para um banco relacional e usar o Prisma como ORM — o que representaria uma refatoração grande do projeto.
+Por que descartei:
+Descartei porque meu projeto é construído sobre MongoDB e Mongoose. Mudar para PostgreSQL exigiria reescrever o model, as validações e a lógica de consulta. Mantive o MongoDB Atlas, que é a solução natural para o stack que já estava usando.
 
-1. **Aiven:** Oferece um plano gratuito muito robusto para MySQL, disponibilizando 5GB de armazenamento e 1GB de RAM, sem tempo de "sleep" (o banco não desliga por inatividade). É totalmente compatível com o Prisma. Foi a opção que **escolhi** por atender perfeitamente às demandas do meu e-commerce e pela facilidade de obter a connection string.
-2. **Clever Cloud:** Também oferece bancos MySQL gratuitos e compatíveis com Prisma, mas o limite do plano grátis é extremamente restrito (apenas 10MB de dados e 5 conexões simultâneas). **Descartei** essa opção porque 10MB se esgotariam muito rápido ao começar a cadastrar imagens, produtos e registrar pedidos dos clientes.
-3. **Neon:** É um serviço excelente, muito rápido e moderno, com bons limites no plano gratuito. No entanto, eu o **descartei** porque ele suporta exclusivamente PostgreSQL. Como o backend do Suki Doces já estava 100% tipado e estruturado em MySQL, fazer a migração de dialeto SQL não faria sentido nesta etapa.
+3. A Hospedagem Escolhida: MongoDB Atlas — Passo a Passo
+3.1 Criação da conta e do banco
 
----
+Acessei cloud.mongodb.com e criei uma conta gratuita.
+Criei uma organização e um projeto chamado "Project Crud".
+Escolhi criar um cluster gratuito (M0 Shared), selecionando a região AWS / Sao Paulo (sa-east-1) para menor latência.
+O Atlas criou o cluster Cluster0 automaticamente.
 
-## 3. A hospedagem que escolhi: Passo a Passo
 
-A plataforma escolhida foi o **Aiven**. Abaixo detalho o processo real de como migrei meu projeto:
+📸 [INSIRA AQUI: print da tela de Clusters do MongoDB Atlas mostrando o Cluster0 ativo (com o ponto verde)]
 
-1. Acessei a plataforma e criei um serviço "MySQL" no plano Free.
-2. Assim que o servidor iniciou, acessei a aba *Overview* do serviço e localizei a "Service URI", que é a connection string gerada pelo Aiven.
-3. Fui até o arquivo `.env` do backend no VS Code, apaguei a URL do localhost e colei essa nova URL fornecida pela nuvem.
-4. Pelo terminal do VS Code, rodei o comando `npx prisma db push`. O Prisma leu meu `schema.prisma` e construiu a estrutura de tabelas diretamente no servidor remoto do Aiven.
+3.2 Configuração de acesso
+Após criar o cluster, configurei dois pontos obrigatórios para conseguir conectar:
 
-Abaixo, a captura de tela que comprova as tabelas do meu projeto devidamente criadas no servidor da nuvem:
+Database User: Criei um usuário com nome e senha específicos para a aplicação (não usei minha conta pessoal do Atlas).
+Network Access (IP Whitelist): Adicionei 0.0.0.0/0 para permitir conexão de qualquer IP durante o desenvolvimento. Em produção isso deveria ser restrito.
 
-<div align="center">
-  <img width="1911" height="847" alt="image" src="https://github.com/user-attachments/assets/e5a9a5b9-3dc1-4aba-a1ac-c536a6995248" />
-</div>
 
-<br>
+📸 [INSIRA AQUI: print da tela de Network Access mostrando o IP liberado]
 
-Abaixo está o teste de integração: uma requisição via Thunder Client batendo na minha API e salvando/buscando os dados com sucesso diretamente no banco remoto!
+3.3 Onde encontrar a connection string
+Dentro do painel do Atlas:
 
-<div align="center">
-  <img width="785" height="442" alt="image" src="https://github.com/user-attachments/assets/a8f892f9-7b30-4747-8831-8f5466e8d49d" />
-</div>
+Cliquei em "Connect" no cluster.
+Selecionei "Drivers" e escolhi Node.js.
+O Atlas gerou a connection string no formato:
 
----
+mongodb+srv://<usuario>:<senha>@cluster0.xxxxxxx.mongodb.net/<banco>
+3.4 Atualização do .env
+Substituí a URI local pela URI do Atlas no arquivo .env:
+env# Antes (local)
+MONGO_URI=mongodb://localhost:27017/crud_db
 
-## 4. O que muda do local para o remoto
+# Depois (remoto - Atlas)
+MONGO_URI=mongodb+srv://tiagoantunes1974_db_user:<senha>@cluster0.7v3xmzm.mongodb.net/crud_db
 
-### A Connection String
-A connection string não é apenas um link, mas sim a "chave de acesso" completa do banco. Ela especifica o protocolo (ex: `mysql://`), o usuário administrador (ex: `avnadmin`), a senha do banco, o "Host" (que agora é o endereço do servidor remoto na nuvem em vez do nosso "localhost" local), a porta de conexão (ex: 12089) e o nome do banco de dados alvo. 
+⚠️ A senha nunca aparece diretamente no README — ela fica apenas no .env local, que está no .gitignore.
 
-### A segurança do .env e o GitHub
-O arquivo `.env` é onde armazenamos dados ultrassecretos, como a connection string. Quando trabalhamos localmente, o risco é menor, mas ao hospedar o banco na nuvem, qualquer pessoa que tiver acesso ao `.env` terá controle total sobre o banco de dados. É por isso que o `.env` é inserido no `.gitignore` e **nunca** é enviado para o GitHub; caso contrário, os dados dos clientes da loja poderiam ser vazados ou deletados facilmente. Na nuvem (como no Render), precisamos preencher essas variáveis de ambiente manualmente no painel de controle.
+3.5 Criação das coleções no banco remoto
+Como meu projeto usa Mongoose (e não Prisma), não existe um comando prisma migrate deploy. As coleções são criadas automaticamente pelo Mongoose quando o primeiro documento é inserido — esse é o comportamento padrão do MongoDB.
+Para garantir que o banco remoto estava funcionando, subi o servidor e fiz uma requisição POST criando um produto. O Atlas criou automaticamente o banco crud_db e a coleção products.
 
-### O que acontece com os dados locais
-Ao realizar a migração e rodar o comando do Prisma (`db push` ou `migrate deploy`), os dados que eu havia cadastrado no meu PC (os doces de teste e meus usuários) **não foram transferidos para a nuvem**. O banco remoto começa completamente vazio. Isso ocorre porque o Prisma espelha apenas a arquitetura (as tabelas, colunas e relacionamentos), enquanto os dados em si continuam isolados fisicamente no disco rígido da minha máquina.
+📸 [INSIRA AQUI: print do MongoDB Atlas > Browse Collections mostrando o banco crud_db e a coleção products com documentos]
 
-### Erros Encontrados e Solução
-Durante o processo de desenvolvimento e deploy para o banco remoto, enfrentei um erro de conflito de *schema* muito interessante. No meu ambiente local, eu havia refatorado a arquitetura do banco para unificar as tabelas antigas de `cliente` e `usuario` em uma tabela só, visando simplificar as regras de negócio. 
+3.6 Requisição funcionando com o banco remoto
+Com o servidor apontando para o Atlas, testei as rotas pelo Insomnia/Postman:
 
-O problema ocorreu ao tentar sincronizar essa nova estrutura local com o banco remoto usando o `prisma db push`. O Prisma detectou que a estrutura estava diferente e que a tabela antiga da nuvem precisaria ser apagada, e bloqueou a ação disparando um aviso de *Data Loss* (Risco de Perda de Dados), para me proteger. Como resolvi: precisei confirmar a ação forçando o Prisma a sobrescrever o banco (aceitando a recriação da tabela unificada) e, em seguida, reiniciei a API no provedor de hospedagem para que o backend passasse a utilizar o novo schema unificado sem falhas.
+📸 [INSIRA AQUI: print do Insomnia/Postman mostrando uma requisição GET /api/products retornando os produtos do banco remoto, com status 200]
+
+
+📸 [INSIRA AQUI: print do terminal mostrando o log ✅ Connected to Database! após conectar ao Atlas]
+
+
+4. O que Muda do Local para o Remoto
+O que é uma connection string e o que cada parte significa
+Uma connection string é o endereço completo que o código usa para encontrar, autenticar e se conectar ao banco de dados. É como o "endereço postal" do banco. No caso do MongoDB Atlas, ela tem este formato:
+mongodb+srv://usuario:senha@cluster0.7v3xmzm.mongodb.net/crud_db
+Cada parte tem um significado:
+ParteO que émongodb+srv://Protocolo de conexão. O +srv indica que usa DNS para descobrir os endereços dos nós do cluster automaticamenteusuario:senhaCredenciais do usuário criado no Atlas (não é a conta da pessoa, é um usuário do banco)@cluster0.7v3xmzm.mongodb.netEndereço do servidor remoto onde o cluster está hospedado/crud_dbNome do banco de dados específico que será usado dentro do cluster
+Por que o .env não vai para o GitHub
+O arquivo .env contém dados que, se expostos publicamente, permitiriam que qualquer pessoa acessasse o banco de dados da aplicação — podendo ler, modificar ou deletar todos os dados. Por isso ele é listado no .gitignore, que instrui o Git a ignorá-lo completamente.
+A relação direta com a troca de banco é que, ao migrar de local para remoto, a única coisa que muda no código é o valor da variável MONGO_URI dentro do .env. O código da aplicação (index.js, product.controller.js etc.) não precisa ser alterado — ele apenas lê process.env.MONGO_URI, seja qual for o valor. Isso é exatamente o propósito das variáveis de ambiente: separar a configuração do código.
+O que acontece com os dados do banco local
+Os dados que estavam no banco local não vão automaticamente para o remoto. Quando conecto ao Atlas pela primeira vez, o banco crud_db começa vazio — ele só ganha coleções e documentos quando a aplicação começa a fazer inserções.
+Isso acontece porque o banco local e o banco remoto são dois servidores completamente independentes. Não existe sincronização automática entre eles. Se eu quisesse migrar os dados, precisaria exportar os documentos do banco local (usando mongoexport) e importá-los no Atlas (usando mongoimport). Para fins deste projeto, optei por começar com o banco remoto zerado e criar novos registros via requisições HTTP.
+Erros encontrados no processo e como resolvi
+Erro 1: Timeout na conexão
+Logo que troquei a MONGO_URI para a string do Atlas, o servidor não conseguia conectar e ficava em timeout. O erro no terminal era algo como MongoNetworkError: connect ETIMEDOUT.
+O problema era que meu IP não estava liberado no Network Access do Atlas. Resolvi acessando o painel do Atlas, indo em Security > Network Access e adicionando meu IP atual (ou liberando todos com 0.0.0.0/0 para desenvolvimento).
+Erro 2: Senha com caracteres especiais na URL
+Minha senha continha o caractere * (asterisco), que é um caractere especial em URLs. Quando coloquei a string diretamente na URL, o Mongoose não conseguia parsear corretamente.
+A solução foi fazer o URL encoding do caractere especial: * vira %2A. Então a senha Thunderbolts*2025 ficou como Thunderbolts%2A2025 dentro da connection string. Isso é um comportamento padrão de URLs — caracteres especiais precisam ser codificados para não quebrarem a estrutura do endereço.
+
+Estrutura do Projeto
+crud-api-products/
+├── controllers/
+│   └── product.controller.js   # Lógica das operações CRUD
+├── models/
+│   └── product.model.js        # Schema Mongoose (equivalente ao schema.prisma)
+├── routes/
+│   └── product.routes.js       # Definição das rotas HTTP
+├── .env                        # Variáveis de ambiente (NÃO vai ao GitHub)
+├── .gitignore                  # Inclui .env e node_modules
+├── index.js                    # Ponto de entrada, conexão com o banco
+└── package.json
+
+Tecnologias Utilizadas
+
+Node.js — ambiente de execução JavaScript no servidor
+Express.js — framework para criação das rotas HTTP
+MongoDB — banco de dados NoSQL orientado a documentos
+Mongoose — ODM (Object Data Modeling) para modelar os dados no MongoDB
+MongoDB Atlas — serviço de hospedagem gerenciada do MongoDB na nuvem
+Dotenv — gerenciamento de variáveis de ambiente
