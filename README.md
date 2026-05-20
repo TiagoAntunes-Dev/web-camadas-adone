@@ -153,8 +153,16 @@ mongodb+srv://<usuario>:<senha>@cluster0.xxxxxxx.mongodb.net/<banco>
 Como meu projeto usa Mongoose (e não Prisma), não existe um comando `prisma migrate deploy`. As coleções são criadas automaticamente pelo Mongoose quando o primeiro documento é inserido — esse é o comportamento padrão do MongoDB.
 
 Para garantir que o banco remoto estava funcionando, subi o servidor e fiz uma requisição POST criando um produto. O Atlas criou automaticamente o banco `crud_db` e a coleção `products`.
-
+<br>
 <p align="center">
 <img width="666" height="212" alt="image" src="https://github.com/user-attachments/assets/94826f5d-daf0-43f6-8586-b3b7ceec5764" />
 <p>
+
+<br>
+
+### 3.6 Requisição funcionando com o banco remoto
+
+Com o servidor apontando para o Atlas, testei as rotas pelo Insomnia/Postman:
+
+> 📸 **[INSIRA AQUI: print do Insomnia/Postman mostrando uma requisição GET `/api/products` retornando os produtos do banco remoto, com status 200]**
 
