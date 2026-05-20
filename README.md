@@ -109,5 +109,5 @@ Escolhi o MongoDB Atlas porque ele é o serviço oficial do próprio MongoDB. A 
 3. Escolhi criar um cluster gratuito (M0 Shared), selecionando a região **AWS / Sao Paulo (sa-east-1)** para menor latência.
 4. O Atlas criou o cluster **Cluster0** automaticamente.
 
-   > **<img width="521" height="232" alt="image" src="https://github.com/user-attachments/assets/28d53861-74ac-4367-bbce-ee3317e051b7" />
+                 > **<img width="521" height="232" alt="image" src="https://github.com/user-attachments/assets/28d53861-74ac-4367-bbce-ee3317e051b7" />**
 
