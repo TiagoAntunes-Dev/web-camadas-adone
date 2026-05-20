@@ -29,8 +29,8 @@
 Durante o desenvolvimento, o banco de dados era acessado localmente. A variável de ambiente no arquivo `.env` ficava assim:
 
 ```env
-# Versão local (MongoDB rodando na própria máquina)
-MONGO_URI=mongodb://localhost:27017/crud_db
+# Versão local (Localhost rodando na própria máquina)
+PORT = 4000
 
 ```
 
@@ -165,7 +165,73 @@ Para garantir que o banco remoto estava funcionando, subi o servidor e fiz uma r
 
 ### 3.6 Requisição funcionando com o banco remoto
 
-Com o servidor apontando para o Atlas, testei as rotas pelo Insomnia/Postman:
+Com o servidor apontando para o Atlas, testei as rotas VSCode:
 
-> 📸 **[INSIRA AQUI: print do Insomnia/Postman mostrando uma requisição GET `/api/products` retornando os produtos do banco remoto, com status 200]**
+<p align="center">
+<img width="392" height="209" alt="image" src="https://github.com/user-attachments/assets/d8ac66ad-7c8f-403c-8733-78add1804050" />
+<img width="922" height="445" alt="image" src="https://github.com/user-attachments/assets/7b8b5cbc-a60c-43a9-9798-ba9b90c66e9a" />
+</p>
 
+<br>
+
+## 4. O que Muda do Local para o Remoto
+
+### O que é uma connection string e o que cada parte significa
+
+Uma connection string é o endereço completo que o código usa para encontrar, autenticar e se conectar ao banco de dados. É como o "endereço postal" do banco. No caso do MongoDB Atlas, ela tem este formato:
+
+```
+mongodb+srv://usuario:senha@cluster0.7v3xmzm.mongodb.net/crud_db
+```
+
+Cada parte tem um significado:
+
+| Parte | O que é |
+|---|---|
+| `mongodb+srv://` | Protocolo de conexão. O `+srv` indica que usa DNS para descobrir os endereços dos nós do cluster automaticamente |
+| `usuario:senha` | Credenciais do usuário criado no Atlas (não é a conta da pessoa, é um usuário do banco) |
+| `@cluster0.7v3xmzm.mongodb.net` | Endereço do servidor remoto onde o cluster está hospedado |
+| `/crud_db` | Nome do banco de dados específico que será usado dentro do cluster |
+
+<br>
+
+### Por que o `.env` não vai para o GitHub
+
+O arquivo `.env` contém dados que, se expostos publicamente, permitiriam que qualquer pessoa acessasse o banco de dados da aplicação — podendo ler, modificar ou deletar todos os dados. Por isso ele é listado no `.gitignore`, que instrui o Git a ignorá-lo completamente.
+
+A relação direta com a troca de banco é que, ao migrar de local para remoto, a única coisa que muda no código é o valor da variável `MONGO_URI` dentro do `.env`. O código da aplicação (`index.js`, `product.controller.js` etc.) não precisa ser alterado — ele apenas lê `process.env.MONGO_URI`, seja qual for o valor. Isso é exatamente o propósito das variáveis de ambiente: separar a configuração do código.
+
+<br>
+
+### Erros encontrados no processo e como resolvi
+
+**Erro 1: Senha com caracteres especiais na URL** 
+<br>
+Minha senha continha o caractere `*` (asterisco), que é um caractere especial em URLs. Quando coloquei a string diretamente na URL, o Mongoose não conseguia parsear corretamente.
+
+<br>
+
+**Erro 2: Conflito de porta local (Porta 3000 em uso)**
+<br>
+Ao tentar testar a API no Thunder Client/Postman, recebi mensagens de rota não encontrada (`Cannot GET /api/products`) ou retornos de outro projeto meu.  
+
+* **Solução:** Descobri que outro projeto Node.js (Suki Doces) estava rodando em segundo plano e ocupando a porta `3000`. Como a porta já estava "sequestrada", a requisição nunca chegava na API nova. A solução foi alterar a variável `PORT` no arquivo `.env` para `4000` e reiniciar o servidor, garantindo que a API rodasse de forma isolada.
+<br>
+
+---
+
+## Estrutura do Projeto
+
+```
+crud-api-products/
+├── controllers/
+│   └── product.controller.js   # Lógica das operações CRUD
+├── models/
+│   └── product.model.js        # Schema Mongoose (equivalente ao schema.prisma)
+├── routes/
+│   └── product.routes.js       # Definição das rotas HTTP
+├── .env                        # Variáveis de ambiente (NÃO vai ao GitHub)
+├── .gitignore                  # Inclui .env e node_modules
+├── index.js                    # Ponto de entrada, conexão com o banco
+└── package.json
+```
